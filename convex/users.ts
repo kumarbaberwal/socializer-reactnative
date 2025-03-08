@@ -11,14 +11,14 @@ export const createUser = mutation({
         image: v.string(),
         clerkId: v.string(),
     },
-    handler: async (context, args) => {
-        const existingUser = await context.db.query('users').withIndex('by_clerk_id', (index) =>
+    handler: async (ctx, args) => {
+        const existingUser = await ctx.db.query('users').withIndex('by_clerk_id', (index) =>
             index.eq('clerkId', args.clerkId)
         ).first()
 
         if (existingUser) return
 
-        await context.db.insert('users', {
+        await ctx.db.insert('users', {
             username: args.username,
             fullname: args.fullname,
             email: args.email,
