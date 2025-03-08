@@ -16,7 +16,7 @@ export const createUser = mutation({
             index.eq('clerkId', args.clerkId)
         ).first()
 
-        if (existingUser) return
+        if (existingUser) return;
 
         await ctx.db.insert('users', {
             username: args.username,

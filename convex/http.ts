@@ -56,7 +56,6 @@ http.route({
             } catch (error) {
                 console.log('Error creating user', error);
                 return new Response("Error creating user", { status: 500 });
-
             }
         }
         return new Response("Webhook processed sucessfully", { status: 200 });

@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '@/constants/Theme'
 import { TouchableOpacity } from 'react-native'
 import { useSSO } from '@clerk/clerk-expo'
-import { router, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 
 export default function Login() {
 
@@ -16,7 +16,7 @@ export default function Login() {
             const { createdSessionId, setActive } = await startSSOFlow({ strategy: 'oauth_google' });
             if (setActive && createdSessionId) {
                 setActive({ session: createdSessionId })
-                router.push('/(tabs)')
+                router.replace('/(tabs)')
             }
         } catch (error) {
             console.log('OAuth Error: ', error)
