@@ -41,8 +41,9 @@ http.route({
 
         const eventType = event.type;
         if (eventType === "user.created") {
-            const { id, email_address, first_name, last_name, image_url } = event.data;
-            const email = email_address[0].email_address;
+            console.log('User created event', event.data);
+            const { id, email_addresses, first_name, last_name, image_url } = event.data;
+            const email = email_addresses[0].email_address;
             const name = `${first_name || ""} ${last_name || ""}`.trim();
             try {
                 await ctx.runMutation(api.users.createUser, {
@@ -61,3 +62,5 @@ http.route({
         return new Response("Webhook processed sucessfully", { status: 200 });
     })
 })
+
+export default http;

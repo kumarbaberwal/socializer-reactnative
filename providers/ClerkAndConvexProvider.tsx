@@ -4,13 +4,13 @@ import { ConvexProviderWithClerk } from "convex/react-clerk";
 import { ConvexReactClient } from "convex/react";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!
-const convex = new ConvexReactClient(process.env.VITE_CONVEX_URL as string);
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL as string);
 if (!publishableKey) {
     throw new Error(
         'Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env',
     )
 }
-export default function ClerkAndConvexProvider({children}: {children: React.ReactNode}) {
+export default function ClerkAndConvexProvider({ children }: { children: React.ReactNode }) {
     return (
         <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
             <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
@@ -18,7 +18,6 @@ export default function ClerkAndConvexProvider({children}: {children: React.Reac
                     {children}
                 </ClerkLoaded>
             </ConvexProviderWithClerk>
-
         </ClerkProvider>
     )
 }

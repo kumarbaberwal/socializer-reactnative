@@ -8,9 +8,7 @@ export default function InitialLayout() {
     const router = useRouter()
 
     useEffect(() => {
-        if (!isLoaded) {
-            return
-        }
+        if (!isLoaded) return
 
         const isAuthScreen = segments[0] === '(auth)'
         if (!isSignedIn && !isAuthScreen) {
@@ -20,9 +18,7 @@ export default function InitialLayout() {
         }
     }, [isLoaded, isSignedIn, segments])
 
-    if (!isLoaded) {
-        return null
-    }
+    if (!isLoaded) return null
 
     return <Stack screenOptions={{ headerShown: false }} />
 }
