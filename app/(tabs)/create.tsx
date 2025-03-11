@@ -11,6 +11,8 @@ import { Image } from 'expo-image';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 
+
+
 export default function Create() {
     const router = useRouter();
     const { user } = useUser();
