@@ -33,7 +33,7 @@ export default function Index() {
                     Socialize
                 </Text>
                 <TouchableOpacity
-                    onPress={() => signOut}
+                    onPress={() => signOut()}
                 >
                     <Ionicons
                         name='log-out-outline'
