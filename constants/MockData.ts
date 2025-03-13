@@ -7,7 +7,7 @@ export const Stories = [
     },
     {
         id: '2',
-        username: 'Bhavya',
+        username: 'Bhavika',
         avatar: 'https://i.pinimg.com/736x/c0/7b/12/c07b1244e137c833af100d55ec5280db.jpg',
         hasStory: true,
     },
@@ -19,7 +19,7 @@ export const Stories = [
     },
     {
         id: '4',
-        username: 'Divya',
+        username: 'Diya',
         avatar: 'https://i.pinimg.com/736x/7c/73/19/7c731925f8c7ab44e8d82eb7344d75ca.jpg',
         hasStory: false,
     },

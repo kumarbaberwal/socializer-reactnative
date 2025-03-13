@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 import { useAuth } from '@clerk/clerk-expo'
 import { styles } from '@/styles/feed.styles';
@@ -11,6 +11,7 @@ import { api } from '@/convex/_generated/api';
 import NoPostFound from '@/components/NoPostFound';
 import Loader from '@/components/Loader';
 import Post from '@/components/Post';
+import StoriesSection from '@/components/StoriesSection';
 
 export default function Index() {
     const { signOut } = useAuth();
@@ -44,30 +45,16 @@ export default function Index() {
             </View>
 
 
-            {/* scroll view */}
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                style={{
-                    marginBottom: 60
-                }}
-            >
-                <ScrollView
-                    horizontal
-                    showsVerticalScrollIndicator={false}
-                    style={styles.storiesContainer}
-                >
-                    {Stories.map((story) => (
-                        <Story
-                            story={story}
-                            key={story.id}
-                        />
-                    ))}
-                </ScrollView>
+            {/* FlatList */}
 
-                {post.map((post) => (
-                    <Post key={post._id} post={post} />
-                ))}
-            </ScrollView>
+            <FlatList
+                data={post}
+                renderItem={({ item }) => <Post post={item} />}
+                keyExtractor={(item) => item._id}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 60 }}
+                ListHeaderComponent={<StoriesSection />}
+            />
         </View>
     )
 }
