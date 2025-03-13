@@ -1,12 +1,10 @@
-import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import React from 'react'
 import { useAuth } from '@clerk/clerk-expo'
 import { styles } from '@/styles/feed.styles';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/Theme';
-import { Stories } from '@/constants/MockData';
-import Story from '@/components/Story';
-import { useQueries, useQuery } from 'convex/react';
+import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import NoPostFound from '@/components/NoPostFound';
 import Loader from '@/components/Loader';
