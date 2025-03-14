@@ -6,10 +6,11 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/Theme';
 import { Id } from '@/convex/_generated/dataModel';
-import { useMutation } from 'convex/react';
+import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import CommentsModal from './CommentsModal';
 import { formatDistanceToNow } from 'date-fns';
+import { useUser } from '@clerk/clerk-expo';
 
 
 type PostProps = {
@@ -31,6 +32,9 @@ type PostProps = {
 }
 
 export default function Post({ post }: PostProps) {
+    const { user } = useUser();
+    console.log(user);
+    const currentUser = useQuery(api.users.getUserByClerkId, { clerkId: user ? user.id : 'skip' });
     const [isLiked, setIsLiked] = useState(post.isLiked);
     const [isBookmarked, setIsBookmarked] = useState(post.isBookmarked);
     const [likesCount, setLikesCount] = useState(post.likes);
@@ -38,6 +42,8 @@ export default function Post({ post }: PostProps) {
     const [showComments, setShowComments] = useState(false);
     const toggleLike = useMutation(api.posts.toggleLike);
     const toggleBookmark = useMutation(api.bookmarks.toggleBookmark);
+    const deletePost = useMutation(api.posts.deletePost);
+
     const handleLike = async () => {
         try {
             const newIsLiked = await toggleLike({ postId: post._id })
@@ -51,6 +57,14 @@ export default function Post({ post }: PostProps) {
     const handleBookmark = async () => {
         const newIsBookmarked = await toggleBookmark({ postId: post._id })
         setIsBookmarked(newIsBookmarked)
+    }
+
+    const handleDelete = async () => {
+        try {
+            await deletePost({ postId: post._id })
+        } catch (error) {
+            console.log("Error deleting post: ", error);
+        }
     }
     return (
         <View
@@ -82,20 +96,27 @@ export default function Post({ post }: PostProps) {
                 </Link>
 
                 {/* show a delete button */}
-                {/* <TouchableOpacity>
-                    <Ionicons
-                        name='ellipsis-horizontal'
-                        size={20}
-                        color={COLORS.white}
-                    />
-                </TouchableOpacity> */}
-                <TouchableOpacity>
-                    <Ionicons
-                        name='trash-outline'
-                        size={20}
-                        color={COLORS.primary}
-                    />
-                </TouchableOpacity>
+                {post.author._id === currentUser?._id ? (
+                    <TouchableOpacity
+                        onPress={handleDelete}
+                    >
+                        <Ionicons
+                            name='trash-outline'
+                            size={20}
+                            color={COLORS.primary}
+                        />
+                    </TouchableOpacity>
+                ) :
+                    (
+                        <TouchableOpacity>
+                            <Ionicons
+                                name='ellipsis-horizontal'
+                                size={20}
+                                color={COLORS.white}
+                            />
+                        </TouchableOpacity>
+                    )
+                }
             </View>
             {/* image */}
             <Image
