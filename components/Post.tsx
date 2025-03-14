@@ -33,7 +33,7 @@ type PostProps = {
 
 export default function Post({ post }: PostProps) {
     const { user } = useUser();
-    console.log(user);
+    // console.log(user);
     const currentUser = useQuery(api.users.getUserByClerkId, { clerkId: user ? user.id : 'skip' });
     const [isLiked, setIsLiked] = useState(post.isLiked);
     const [isBookmarked, setIsBookmarked] = useState(post.isBookmarked);
