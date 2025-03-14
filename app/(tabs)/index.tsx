@@ -29,7 +29,7 @@ export default function Index() {
                 <Text
                     style={styles.headerTitle}
                 >
-                    Socialize
+                    Socializer
                 </Text>
                 <TouchableOpacity
                     onPress={() => signOut()}
