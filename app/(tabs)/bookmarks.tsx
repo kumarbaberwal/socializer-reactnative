@@ -1,11 +1,11 @@
-import { View, Text, FlatList } from 'react-native'
-import React from 'react'
-import { useQuery } from 'convex/react'
-import { api } from '@/convex/_generated/api'
 import Loader from '@/components/Loader';
 import NoBookmarksFound from '@/components/NoBookmarksFound';
+import { api } from '@/convex/_generated/api';
 import { styles } from '@/styles/feed.styles';
+import { useQuery } from 'convex/react';
 import { Image } from 'expo-image';
+import React from 'react';
+import { FlatList, Text, View } from 'react-native';
 
 export default function Bookmarks() {
     const bookmarkedPosts = useQuery(api.bookmarks.getBookmarkedPosts);

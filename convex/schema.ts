@@ -44,7 +44,7 @@ export default defineSchema({
         type: v.union(v.literal('like'), v.literal('comment'), v.literal('follow')),
         postId: v.optional(v.id('post')),
         commentId: v.optional(v.id('comments')),
-    }).index('by_receiver_id', ['receiverId']),
+    }).index('by_receiver_id', ['receiverId']).index('by_post_id', ['postId']),
 
     bookmark: defineTable({
         userId: v.id('users'),

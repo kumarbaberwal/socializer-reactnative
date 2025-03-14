@@ -1,15 +1,15 @@
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator, ScrollView, TextInput } from 'react-native'
-import React, { useState } from 'react'
-import { useRouter } from 'expo-router'
-import { useUser } from '@clerk/clerk-expo';
-import { styles } from '@/styles/create.styles';
-import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/Theme';
-import * as ImagePicker from 'expo-image-picker';
+import { api } from '@/convex/_generated/api';
+import { styles } from '@/styles/create.styles';
+import { useUser } from '@clerk/clerk-expo';
+import { Ionicons } from '@expo/vector-icons';
+import { useMutation } from 'convex/react';
 import * as FileSystem from 'expo-file-system';
 import { Image } from 'expo-image';
-import { useMutation } from 'convex/react';
-import { api } from '@/convex/_generated/api';
+import * as ImagePicker from 'expo-image-picker';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 
 
