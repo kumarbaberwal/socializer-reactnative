@@ -75,7 +75,8 @@ export default function Post({ post }: PostProps) {
                 style={styles.postHeader}
             >
                 <Link
-                    href={'/'}
+                    href={currentUser?._id === post.author._id ? '/(tabs)/profile' : ({ pathname: '/user/[id]', params: { id: post.author._id } })}
+                    asChild
                 >
                     <TouchableOpacity
                         style={styles.postHeaderLeft}
@@ -214,6 +215,6 @@ export default function Post({ post }: PostProps) {
                 onClose={() => setShowComments(false)}
                 onCommentAdded={() => setCommentsCount((prev) => prev + 1)}
             />
-        </View>
+        </View >
     )
 }

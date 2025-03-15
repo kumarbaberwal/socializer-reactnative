@@ -191,7 +191,7 @@ export const styles = StyleSheet.create({
     followButton: {
         backgroundColor: COLORS.primary,
         paddingHorizontal: 24,
-        paddingVertical: 3,
+        paddingVertical: 12,
         borderRadius: 8,
         marginTop: 16,
     },
@@ -211,6 +211,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
     },
     noPostsContainer: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 48,
