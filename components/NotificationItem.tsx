@@ -58,7 +58,7 @@ export default function NotificationItem({ notification }: any) {
                     style={styles.notificationInfo}
                 >
                     <Link
-                        href={'/'}
+                        href={{ pathname: '/user/[id]', params: { id: notification.sender._id } }}
                         asChild
                     >
                         <TouchableOpacity>

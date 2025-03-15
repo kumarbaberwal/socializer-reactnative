@@ -8,12 +8,20 @@ import { styles } from '@/styles/feed.styles';
 import { useAuth } from '@clerk/clerk-expo';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from 'convex/react';
-import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, RefreshControl, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Index() {
     const { signOut } = useAuth();
+    const [refreshing, setRefreshing] = useState(false);
     const post = useQuery(api.posts.getFeedPosts);
+
+    const onRefresh = () => {
+        setRefreshing(true)
+        setTimeout(()=> {
+            setRefreshing(false)
+        }, 2000)
+     }
 
     if (post === undefined) return <Loader />
 
@@ -52,6 +60,13 @@ export default function Index() {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 60 }}
                 ListHeaderComponent={<StoriesSection />}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                        tintColor={COLORS.primary}
+                    />
+                }
             />
         </View>
     )

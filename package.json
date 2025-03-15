@@ -47,7 +47,8 @@
     "react-native-screens": "~4.4.0",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5",
-    "svix": "^1.61.3"
+    "svix": "^1.61.3",
+    "expo-navigation-bar": "~4.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
