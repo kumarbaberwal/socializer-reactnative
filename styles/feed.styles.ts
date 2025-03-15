@@ -2,7 +2,7 @@ import { COLORS } from "@/constants/Theme";
 import { Dimensions, Platform, StyleSheet } from "react-native";
 
 
-const { width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -213,6 +213,27 @@ export const styles = StyleSheet.create({
     },
     postButtonDisable: {
         opacity: 0.5,
+    },
+    modalBackdrop: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        justifyContent: 'center',
+    },
+    postDetailContainer: {
+        backgroundColor: COLORS.background,
+        maxHeight: height * 0.9,
+    },
+    postDetailHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: 12,
+        borderBottomWidth: 0.5,
+        borderBottomColor: COLORS.surface,
+    },
+    postDetailImage: {
+        width: width,
+        height: width,
     },
     centered: {
         justifyContent: 'center',
